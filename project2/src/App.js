@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import PageTabs from './components/pagetabs';
 import TaskList from './components/tasklist';
 import TaskGrid from './components/taskgrid';
+import TaskBoard from './components/taskboard';
+import TaskBoardItem from './components/taskboarditem';
 import AddTask from './components/addtask';
 
 class App extends Component {
@@ -12,7 +14,7 @@ class App extends Component {
         this.state = {
             items: [],
             isLoaded: false,
-            view: 'TaskList',
+            view: 'TaskBoard',
         }
     }
 
@@ -27,7 +29,7 @@ class App extends Component {
             });
     }
 
-/*    onViewChange(view) {
+    onViewChange(view) {
         this.setState({view});
     }
 
@@ -40,7 +42,7 @@ class App extends Component {
                 {jsx}
             </div>
         );
-    }*/
+    }
 
     taskStatusChanged = (id, column) => {
         const itemIndex = this.state.items.findIndex(_=>_.id === id);
@@ -59,28 +61,28 @@ class App extends Component {
 
     render() {
 
-       /* const{view} = this.state;
+       const{view} = this.state;
 
         switch (view) {
             case "TaskList":
                 return (this.wrapPage(<TaskList />));
-            case "TaskGrid":
-                return (this.wrapPage(<TaskGrid />));
+            case "TaskBoard":
+                return (this.wrapPage(<TaskBoard items={this.state.items} />));
             case "AddTask":
                 return (this.wrapPage(<AddTask/>));
-        }*/
+        }
 
         var {isLoaded, items } = this.state; // access these items
 
         if (!isLoaded) {
             return <div> Loading...</div>
         }
-
         else {
              return (
                  <TaskList items={this.state.items} onStatusChanged={(id, status)=>this.taskStatusChanged(id, status)}/>
-    );
-  } }
+                 );
+        }
+    }
 }
 
 export default App;
