@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import '../tasklist.css';
 
 
 class TaskList extends Component {
@@ -13,14 +14,14 @@ class TaskList extends Component {
 
     onSortOrderChanged = (column)=>{
         if(this.state.sort.column === column) {
-            let direction = 'asc'
-            if(this.state.sort.direction === 'asc') {
-                direction = 'desc';
+            let direction = '↑'
+            if(this.state.sort.direction === '↑') {
+                direction = '↓';
             }
             this.setState({sort :{column, direction}});
         }
         else {
-            this.setState({sort :{column, direction: 'asc'}});
+            this.setState({sort :{column, direction: '↑'}});
         }
     }
 
@@ -43,7 +44,7 @@ class TaskList extends Component {
 
     getSortedItems(items) {
         if(this.state.sort.column) {
-            const direction = this.state.sort.direction === 'asc' ? -1 : 1;
+            const direction = this.state.sort.direction === '↑' ? -1 : 1;
             switch (this.state.sort.column) {
                 case "title":
                     return items.sort((a, b)=>a.title<b.title ? direction: -direction);
@@ -63,9 +64,9 @@ class TaskList extends Component {
     }
 
     render() {
-        return <div>
-            <table>
-                <thead>
+        return <div className='container'>
+            <table className='table'>
+                <thead className='table_head'>
                 <tr>
                     <td onClick={()=>this.onSortOrderChanged('title')}>Title {this.getArrowDirection('title')}</td>
                     <td onClick={()=>this.onSortOrderChanged('type')}>Type {this.getArrowDirection('type')}</td>
@@ -94,12 +95,14 @@ class TaskList extends Component {
                     </td>
                 </tr>
                 </thead>
-                <tbody>
+
+                <tbody className='table_body'>
                 {this.getFilteredItems(this.getSortedItems(this.props.items)).map(item => (
-                    <tr key={item.id}>
+                    <tr className='table_row' key={item.id}>
                         <td>{item.title}</td>
                         <td>{item.type}</td>
                         <td>
+                            <div className='custom-select'>
                             <select value={item.column}
                                     onChange={event => this.props.onStatusChanged(item.id,event.target.value)}>
 
@@ -108,6 +111,7 @@ class TaskList extends Component {
                             <option>review</option>
                                 <option>done</option>
                             </select>
+                            </div>
                         </td>
                     </tr>
                 ))}
