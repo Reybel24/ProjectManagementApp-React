@@ -3,7 +3,8 @@ import React from 'react';
 const TaskBoardItem = props => {
     return (
         <div>
-            <h5>Sample Task Item</h5>
+            <h4>Sample Task Item</h4>
+            <p>Sample data about task</p>
         </div>
     )
 };
