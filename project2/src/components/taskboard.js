@@ -1,8 +1,39 @@
 import React, { Component } from 'react';
 import TaskBoardItem from "./taskboarditem";
+import './taskboard.css';
 
 
 class TaskBoard extends Component {
+    constructor(props) {
+        super(props);
+        this.handleClick = this.handleClick.bind(this);
+    }
+
+    handleClick()
+    {
+        // Force update
+        console.log("whyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy");
+        this.setState({ state: this.state })
+    }
+
+    filterCards = (column, fun) =>
+    {
+
+        console.log("Filtering by: " + column);
+        // Filter items by column
+        return this.props.items.filter((task) =>
+        {
+            // Condition to filter by
+            return task.column == column;
+        }).map((task) => (
+            // Create the task
+            //console.log(this);
+            <TaskBoardItem key={task.id} task={task} handler={this.handleClick} />
+        ), this)
+
+    }
+
+
 
     render() {
         /*
@@ -17,39 +48,36 @@ class TaskBoard extends Component {
         });
         */
 
-
         return (
             <div>
                 <h1>Task Board</h1>
+                <div id="boards-container">
 
-                <div id="board-container">
-                    <div className="board-section" id="todo">
-                        <h2>To Do</h2>
-                        {
-                            // Filter items and put into seperate arrays
-                            this.props.items.filter(function (task)
-                            {
-                                // Condition to filter by
-                                return task.column == "todo";
-                            }).map(function (task)
-                            {
-                                // Create the task card
-                                return <TaskBoardItem key={task.id} task={task}/>
-                            })
-                        }
-                    </div>
+                    {/* Section: To do */}
+                    <section className="board" id="todo">
+                        <h2 className="board-header" id="todo">To Do</h2>
+                        { this.filterCards("todo", this.handleClick) }
+                    </section>
 
-                    <div className="board-section" id="todo">
-                        <h2>In Progress</h2>
-                    </div>
+                    {/* Section: In Progress */}
+                    <section className="board" id="in-progress">
+                        <h2 className="board-header" id="in-progress">In Progress</h2>
+                        { this.filterCards("in-progress", this.handleClick) }
+                    </section>
 
-                    <div className="board-section" id="todo">
-                        <h2>Review</h2>
-                    </div>
+                    {/* Section: Review */}
+                    <section className="board" id="review">
+                        <h2 className="board-header" id="review">Review</h2>
+                        { this.filterCards("review", this.handleClick) }
+                    </section>
 
-                    <div className="board-section" id="todo">
-                        <h2>Done</h2>
-                    </div>
+                    {/* Section: Done */}
+                    <section className="board" id="done">
+                        <h2 className="board-header" id="done">Done</h2>
+                        { this.filterCards("done", this.handleClick) }
+                    </section>
+
+
                 </div>
 
             </div>

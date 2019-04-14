@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css?family=Work+Sans');
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    padding: 0;
+}
+
+#boards-container {
+    background-color: #f8f8f8;
+    padding: 30px;
+    display: inline-block;
+    width: 90%;
+}
+
+.board {
+    width:20%;
+    height: 100%;
+    padding: 30px;
+    padding-top:15px;
+    background-color: white;
+    box-shadow: 0 20px 80px 0 rgba(0, 0, 0, 0.1), 0 0px 0px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 15px;
+    float: left;
+    justify-content: center;
+    text-align: center;
+    margin-right:20px;
+    margin-bottom: 20px;
+}
+.board-header {
+    color: #5a5a5a;
+    text-align: left;
+    font-size:20px;
+}
+.board-header#todo {
+
+}
+.board-header#in-progress {
+    color: #db685f;
+}
+.board-header#review {
+    color: #c38e6c;
+}
+.board-header#done {
+    color: #639871;
+}
+
+.card-task {
+    width: 90%;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 20px 80px 0 rgba(0, 0, 0, 0.1), 0 0px 0px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 15px;
+    margin-top: 20px;
+}
+.card-header {
+    color: #5a5a5a;
+    font-size:22px;
+    padding: 15px;
+    padding-left:12px;
+    text-align: left;
+}
+.card-attributes {
+    color: #999;
+    padding-left:15px;
+    padding-top: 5px;
+    text-align: left;
+}
+
