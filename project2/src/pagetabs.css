@@ -1,0 +1,21 @@
+.container {
+    background-color: antiquewhite;
+    width: 75%;
+    margin: auto;
+}
+
+.page_tabs {
+    /*background-color: antiquewhite;*/
+    min-height: 100%;
+    width: 75%;
+    padding: 10px;
+    cursor: pointer;
+    margin: auto;
+
+}
+
+.tab_items {
+    padding: 10px;
+    width: 75%;
+    margin: auto;
+}
