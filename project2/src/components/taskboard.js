@@ -12,14 +12,11 @@ class TaskBoard extends Component {
     handleClick()
     {
         // Force update
-        console.log("whyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy");
         this.setState({ state: this.state })
     }
 
     filterCards = (column, fun) =>
     {
-
-        console.log("Filtering by: " + column);
         // Filter items by column
         return this.props.items.filter((task) =>
         {
@@ -27,7 +24,6 @@ class TaskBoard extends Component {
             return task.column == column;
         }).map((task) => (
             // Create the task
-            //console.log(this);
             <TaskBoardItem key={task.id} task={task} handler={this.handleClick} />
         ), this)
 
