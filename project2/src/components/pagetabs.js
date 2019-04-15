@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../pagetabs.css';
+import './pagetabs.css';
 
 class PageTabs extends Component {
 

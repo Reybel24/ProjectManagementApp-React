@@ -9,14 +9,16 @@ h1, h2, h3, h4, h5, h6 {
     background-color: #f8f8f8;
     padding: 30px;
     display: inline-block;
-    width: 90%;
+    width: 100%;
     min-width: 830px;
 }
 #page-header {
     color: #5a5a5a;
     font-size:27px;
-    padding: 30px;
-    text-align: center;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-left:10px;
+    text-align: left;
 }
 .board {
     width:20%;
@@ -132,6 +134,20 @@ h1, h2, h3, h4, h5, h6 {
     background-color: #639871;
     color: white;
     border-color: #639871;
+}
+
+.select {
+    display: block;
+    width:360px;
+    height: 50px;
+    margin-left:6px;
+    margin-bottom: 20px;
+    margin-top:8px;
+    padding:10px;
+    font-size:14px;
+    color: #404040;
+    border-radius:7px;
+    border: 0;
 }
 
 .hidden {

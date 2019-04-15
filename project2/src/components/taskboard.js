@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import TaskBoardItem from "./taskboarditem";
 import './taskboard.css';
 
+// Why was this so difficult
 
 class TaskBoard extends Component {
     constructor(props) {
@@ -46,15 +47,16 @@ class TaskBoard extends Component {
     render() {
         return (
             <div>
-                <select value={this.state.activeColumn} className={this.props.size == "mobile" ? '' : 'hidden'}
-                        onChange={event => this.onSelectColumn(event.target.value)}>
-                    <option>todo</option>
-                    <option>in-progress</option>
-                    <option>review</option>
-                    <option>done</option>
-                </select>
                 <div id="boards-container">
-                    <h1>Task Board</h1>
+                    <h1 id="page-header">Task Board</h1>
+
+                    <select value={this.state.activeColumn} className={this.props.size == "mobile" ? 'select' : 'hidden'}
+                            onChange={event => this.onSelectColumn(event.target.value)}>
+                        <option>todo</option>
+                        <option>in-progress</option>
+                        <option>review</option>
+                        <option>done</option>
+                    </select>
 
                     {/* Section: To do */}
                     <section className={this.state.activeColumn != "todo" && this.props.size == "mobile" ? 'board hidden' : 'board'} id="todo">
