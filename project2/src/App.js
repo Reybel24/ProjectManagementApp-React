@@ -3,7 +3,10 @@ import React, { Component } from 'react';
 import PageTabs from './components/pagetabs';
 import TaskList from './components/tasklist';
 import TaskBoard from './components/taskboard';
-import TaskBoardItem from './components/taskboarditem';
+
+const LARGE_DESKTOP_BREAKPOINT = 1366;
+const SMALL_DESKTOP_BREAKPOINT = 1024;
+const TABLET_BREAKPOINT = 768;
 
 class App extends Component {
 
@@ -12,7 +15,11 @@ class App extends Component {
         this.state = {
             items: [],
             isLoaded: false,
-            view: 'TaskBoard',
+            view: 'TaskList',
+
+            // Responsive
+            browserWidth: 0,
+            breakpoint: 'large-desktop'
         }
     }
 
@@ -25,6 +32,10 @@ class App extends Component {
                     items: json, //get data from api
                 })
             });
+
+        // Responsive
+        window.addEventListener('resize', this.handleResize);
+        this.handleResize();
     }
 
     taskStatusChanged = (id, column) => {
@@ -54,6 +65,22 @@ class App extends Component {
         );
     }
 
+    handleResize = () => {
+        const browserWidth = window.innerWidth;
+        let breakpoint = 'large-desktop';
+
+        if (browserWidth < LARGE_DESKTOP_BREAKPOINT && browserWidth >= SMALL_DESKTOP_BREAKPOINT) {
+            breakpoint = 'small-desktop';
+        } else if (browserWidth < SMALL_DESKTOP_BREAKPOINT && browserWidth >= TABLET_BREAKPOINT) {
+            breakpoint = 'tablet';
+        } else if (browserWidth < TABLET_BREAKPOINT) {
+            breakpoint = 'mobile';
+        }
+
+        this.setState({ breakpoint, browserWidth });
+        console.log("current breakpoint is: " + breakpoint);
+    }
+
 
     render() {
         const{view} = this.state;
@@ -62,7 +89,8 @@ class App extends Component {
             case "TaskList":
                 return (this.wrapPage(<TaskList items={this.state.items} onStatusChanged={(id, status)=>this.taskStatusChanged(id, status)}/>));
             case "TaskBoard":
-                return (this.wrapPage(<TaskBoard items={this.state.items} />));
+                console.log("REFRESH");
+                return (this.wrapPage(<TaskBoard items={this.state.items} size={this.state.breakpoint} />));
         }
 
         var {isLoaded, items } = this.state; // access these items

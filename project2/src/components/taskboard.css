@@ -10,6 +10,7 @@ h1, h2, h3, h4, h5, h6 {
     padding: 30px;
     display: inline-block;
     width: 90%;
+    min-width: 830px;
 }
 
 .board {
@@ -25,6 +26,7 @@ h1, h2, h3, h4, h5, h6 {
     text-align: center;
     margin-right:20px;
     margin-bottom: 20px;
+    min-width: 306px;
 }
 .board-header {
     color: #5a5a5a;
@@ -51,6 +53,7 @@ h1, h2, h3, h4, h5, h6 {
     box-shadow: 0 20px 40px 0 rgba(0, 0, 0, 0.1), 0 0px 0px 0 rgba(0, 0, 0, 0.19);
     border-radius: 15px;
     margin-top: 20px;
+    min-width: 242px;
 }
 .card-top {
     width: 100%;
@@ -86,7 +89,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .button-taskMove {
-    width: 300px;
+    width: 90%;
     padding-top: 15px;
     padding-bottom: 15px;
     color: grey;
@@ -103,6 +106,7 @@ h1, h2, h3, h4, h5, h6 {
     transition: 0.3s;
     border-radius: 10px;
     background-color: white;
+
 }
 .button-taskMove#toToDo:hover {
     background-color: #5a5a5a;
@@ -123,4 +127,8 @@ h1, h2, h3, h4, h5, h6 {
     background-color: #639871;
     color: white;
     border-color: #639871;
+}
+
+.hidden {
+    display: none;
 }

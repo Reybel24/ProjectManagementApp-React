@@ -25,8 +25,8 @@ class PageTabs extends Component {
                 </td>
 
                 <td>
-                    <a className={this.isActiveTab('TaskGrid')}
-                       onClick={(e) => this.onTabClick(e, 'TaskGrid')}>
+                    <a className={this.isActiveTab('TaskBoard')}
+                       onClick={(e) => this.onTabClick(e, 'TaskBoard')}>
                         Board View
                     </a>
                 </td>

@@ -9,6 +9,10 @@ class TaskBoard extends Component {
         this.handleClick = this.handleClick.bind(this);
     }
 
+    state = {
+        activeColumn: 'todo'
+    }
+
     handleClick()
     {
         // Force update
@@ -29,46 +33,45 @@ class TaskBoard extends Component {
 
     }
 
+    onSelectColumn = (activeColumn) => {
+        console.log("column changed to: " + activeColumn);
+        this.setState({activeColumn});
+    }
 
 
     render() {
-        /*
-        // Create task cards
-        const itemCards = this.props.items.map(item => {
-            return <TaskBoardItem task={item} key={item.id} />
-        });
-
-        // Place cards
-        itemCards.map(item => {
-            return <h5>ahhhh</h5>
-        });
-        */
-
         return (
             <div>
+                <select value={this.state.activeColumn} className={this.props.size == "mobile" ? '' : 'hidden'}
+                        onChange={event => this.onSelectColumn(event.target.value)}>
+                    <option>todo</option>
+                    <option>in-progress</option>
+                    <option>review</option>
+                    <option>done</option>
+                </select>
                 <h1>Task Board</h1>
                 <div id="boards-container">
 
                     {/* Section: To do */}
-                    <section className="board" id="todo">
+                    <section className={this.state.activeColumn != "todo" && this.props.size == "mobile" ? 'board hidden' : 'board'} id="todo">
                         <h2 className="board-header" id="todo">To Do</h2>
                         { this.filterCards("todo", this.handleClick) }
                     </section>
 
                     {/* Section: In Progress */}
-                    <section className="board" id="in-progress">
+                    <section className={this.state.activeColumn != "in-progress" && this.props.size == "mobile" ? 'board hidden' : 'board'} id="in-progress">
                         <h2 className="board-header" id="in-progress">In Progress</h2>
                         { this.filterCards("in-progress", this.handleClick) }
                     </section>
 
                     {/* Section: Review */}
-                    <section className="board" id="review">
+                    <section className={this.state.activeColumn != "review" && this.props.size == "mobile" ? 'board hidden' : 'board'} id="review">
                         <h2 className="board-header" id="review">Review</h2>
                         { this.filterCards("review", this.handleClick) }
                     </section>
 
                     {/* Section: Done */}
-                    <section className="board" id="done">
+                    <section className={this.state.activeColumn != "done" && this.props.size == "mobile" ? 'board hidden' : 'board'} id="done">
                         <h2 className="board-header" id="done">Done</h2>
                         { this.filterCards("done", this.handleClick) }
                     </section>
