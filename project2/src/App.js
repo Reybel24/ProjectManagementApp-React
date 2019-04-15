@@ -15,7 +15,7 @@ class App extends Component {
         this.state = {
             items: [],
             isLoaded: false,
-            view: 'TaskBoard',
+            view: 'TaskList',
 
             // Responsive
             browserWidth: 0,
