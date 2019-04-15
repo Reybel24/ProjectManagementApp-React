@@ -12,7 +12,12 @@ h1, h2, h3, h4, h5, h6 {
     width: 90%;
     min-width: 830px;
 }
-
+#page-header {
+    color: #5a5a5a;
+    font-size:27px;
+    padding: 30px;
+    text-align: center;
+}
 .board {
     width:20%;
     height: 100%;

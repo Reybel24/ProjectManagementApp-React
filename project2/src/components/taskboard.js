@@ -10,12 +10,16 @@ class TaskBoard extends Component {
     }
 
     state = {
+        // Currently active column for mobile
         activeColumn: 'todo'
     }
 
-    handleClick()
+    handleClick(task, dest)
     {
-        // Force update
+        // Move the card to wherever its going using the moveTask function in the parent
+        this.props.moveTask(task, dest)
+
+        // Force update to reflect changes
         this.setState({ state: this.state })
     }
 
@@ -49,8 +53,8 @@ class TaskBoard extends Component {
                     <option>review</option>
                     <option>done</option>
                 </select>
-                <h1>Task Board</h1>
                 <div id="boards-container">
+                    <h1>Task Board</h1>
 
                     {/* Section: To do */}
                     <section className={this.state.activeColumn != "todo" && this.props.size == "mobile" ? 'board hidden' : 'board'} id="todo">

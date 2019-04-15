@@ -15,7 +15,7 @@ class App extends Component {
         this.state = {
             items: [],
             isLoaded: false,
-            view: 'TaskList',
+            view: 'TaskBoard',
 
             // Responsive
             browserWidth: 0,
@@ -81,6 +81,32 @@ class App extends Component {
         console.log("current breakpoint is: " + breakpoint);
     }
 
+    moveTaskTo(task, dest)
+    {
+        //console.log("Moving task " + task.title + " to " + dest);
+        switch (dest)
+        {
+            case 0:
+                task.column = "todo";
+                break;
+
+            case 1:
+                task.column = "in-progress";
+                break;
+
+            case 2:
+                task.column = "review";
+                break;
+
+            case 3:
+                task.column = "done";
+                break;
+
+            default:
+                console.log("none");
+        }
+    }
+
 
     render() {
         const{view} = this.state;
@@ -90,7 +116,7 @@ class App extends Component {
                 return (this.wrapPage(<TaskList items={this.state.items} onStatusChanged={(id, status)=>this.taskStatusChanged(id, status)}/>));
             case "TaskBoard":
                 console.log("REFRESH");
-                return (this.wrapPage(<TaskBoard items={this.state.items} size={this.state.breakpoint} />));
+                return (this.wrapPage(<TaskBoard items={this.state.items} moveTask={this.moveTaskTo} size={this.state.breakpoint} />));
         }
 
         var {isLoaded, items } = this.state; // access these items

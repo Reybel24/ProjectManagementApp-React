@@ -7,62 +7,6 @@ import icon_check from '../images/check.png';
 class TaskBoardItem extends Component {
     constructor(props) {
         super(props);
-        this.moveCardTo = this.moveCardTo.bind(this);
-    }
-
-    moveCardTo(task, dest)
-    {
-        //console.log("Moving task " + task.title + " to " + dest);
-
-        switch (dest)
-        {
-            case 0:
-                task.column = "todo";
-
-                // Update this item
-                this.setState({ state: this.state })
-
-                // Update entire UI
-                this.props.handler();
-
-                break;
-
-            case 1:
-                task.column = "in-progress";
-
-                // Update this item
-                this.setState({ state: this.state })
-
-                // Update entire UI
-                this.props.handler();
-
-                break;
-
-            case 2:
-                task.column = "review";
-
-                // Update this item
-                this.setState({ state: this.state })
-
-                // Update entire UI
-                this.props.handler();
-
-                break;
-
-            case 3:
-                task.column = "done";
-
-                // Update this item
-                this.setState({ state: this.state })
-
-                // Update entire UI
-                this.props.handler();
-
-                break;
-
-            default:
-                console.log("none");
-        }
     }
 
     // Return the correct icon depending on column
@@ -83,7 +27,6 @@ class TaskBoardItem extends Component {
             case "done":
                 return icon_check;
                 break;
-
         }
     }
 
@@ -100,24 +43,19 @@ class TaskBoardItem extends Component {
                 </div>
 
                 {/* Decide what actions to allow on this card item */}
+                {/* Show "start work" to move to in progress */}
+                { this.props.task.column === "todo" && <button className="button-taskMove" id="toInProgress" onClick={ () => this.props.handler(this.props.task, 1)}>Begin Work</button> }
 
                 {/* Show "start work" to move to in progress */}
-                { this.props.task.column === "todo" && <button className="button-taskMove" id="toInProgress" onClick={ () => this.moveCardTo(this.props.task, 1)}>Begin Work</button> }
+                { this.props.task.column === "in-progress" && <button className="button-taskMove" id="toToDo" onClick={ () => this.props.handler(this.props.task, 0)}>Send Back</button> }
+                { this.props.task.column === "in-progress" && <button className="button-taskMove" id="toReview" onClick={ () => this.props.handler(this.props.task, 2)}>Request Review</button> }
 
                 {/* Show "start work" to move to in progress */}
-                { this.props.task.column === "in-progress" && <button className="button-taskMove" id="toToDo" onClick={ () => this.moveCardTo(this.props.task, 0)}>Send Back</button> }
-                { this.props.task.column === "in-progress" && <button className="button-taskMove" id="toReview" onClick={ () => this.moveCardTo(this.props.task, 2)}>Request Review</button> }
+                { this.props.task.column === "review" && <button className="button-taskMove" id="toInProgress" onClick={ () => this.props.handler(this.props.task, 1)}>More Work Required</button> }
+                { this.props.task.column === "review" && <button className="button-taskMove" id="toDone" onClick={ () => this.props.handler(this.props.task, 3)}>Mark Done</button> }
 
                 {/* Show "start work" to move to in progress */}
-                { this.props.task.column === "review" && <button className="button-taskMove" id="toInProgress" onClick={ () => this.moveCardTo(this.props.task, 1)}>More Work Required</button> }
-                { this.props.task.column === "review" && <button className="button-taskMove" id="toDone" onClick={ () => this.moveCardTo(this.props.task, 3)}>Mark Done</button> }
-
-                {/* Show "start work" to move to in progress */}
-                { this.props.task.column === "done" && <button className="button-taskMove" id="toReview" onClick={ () => this.moveCardTo(this.props.task, 2)}>Request Re-Review</button> }
-
-
-
-
+                { this.props.task.column === "done" && <button className="button-taskMove" id="toReview" onClick={ () => this.props.handler(this.props.task, 2)}>Request Re-Review</button> }
             </div>
         )
     }
