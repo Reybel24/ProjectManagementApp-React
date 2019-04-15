@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import '../pagetabs.css';
 
 class PageTabs extends Component {
 
@@ -8,31 +9,30 @@ class PageTabs extends Component {
 
     onTabClick(event, tabName) {
         event.preventDefault();
-        this.props.OnViewChange(tabName);
+        this.props.onViewChange(tabName);
     }
 
     render () {
         return (
-            <thead className='nav page-tabs'>
-            <tr className='nav-item'>
+            <div className='container'>
+            <thead className='page_tabs'>
+            <tr className='tab_items'>
+                <td>
                 <a className={this.isActiveTab('TaskList')}
                    onClick={(e) => this.onTabClick(e, 'TaskList')}>
-                    Grid View
-                </a>
-            </tr>
-            <tr className='nav-item'>
-                <a className={this.isActiveTab('TaskGrid')}
-                   onClick={(e) => this.onTabClick(e, 'TaskGrid')}>
                     List View
                 </a>
-            </tr>
-            <tr className='nav-item'>
-                <a className={this.isActiveTab('AddTask')}
-                   onClick={(e) => this.onTabClick(e, 'AddTask')}>
-                    Add Task
-                </a>
+                </td>
+
+                <td>
+                    <a className={this.isActiveTab('TaskGrid')}
+                       onClick={(e) => this.onTabClick(e, 'TaskGrid')}>
+                        Board View
+                    </a>
+                </td>
             </tr>
         </thead>
+</div>
         )
     }
 };
