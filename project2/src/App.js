@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 
 import PageTabs from './components/pagetabs';
 import TaskList from './components/tasklist';
-import TaskGrid from './components/taskgrid';
+import TaskBoard from './components/taskboard';
+import TaskBoardItem from './components/taskboarditem';
 
 class App extends Component {
 
@@ -11,7 +12,7 @@ class App extends Component {
         this.state = {
             items: [],
             isLoaded: false,
-            view: 'TaskList',
+            view: 'TaskBoard',
         }
     }
 
@@ -55,14 +56,13 @@ class App extends Component {
 
 
     render() {
-
         const{view} = this.state;
 
         switch (view) {
             case "TaskList":
                 return (this.wrapPage(<TaskList items={this.state.items} onStatusChanged={(id, status)=>this.taskStatusChanged(id, status)}/>));
-            case "TaskGrid":
-                return (this.wrapPage(<TaskGrid />));
+            case "TaskBoard":
+                return (this.wrapPage(<TaskBoard items={this.state.items} />));
         }
 
         var {isLoaded, items } = this.state; // access these items
@@ -70,12 +70,12 @@ class App extends Component {
         if (!isLoaded) {
             return <div> Loading...</div>
         }
-
         else {
              return (
                  <TaskList items={this.state.items} onStatusChanged={(id, status)=>this.taskStatusChanged(id, status)}/>
-    );
-  } }
+                 );
+        }
+    }
 }
 
 export default App;
